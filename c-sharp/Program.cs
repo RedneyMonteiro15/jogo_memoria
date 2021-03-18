@@ -11,9 +11,11 @@ namespace c_sharp
             int num, i = 0, contS = 0, contN = 0, total = 0;
             while (true)
             {
+                cabecalho("Tentando Sua Memoria");
                 int c = 0;
                 Random aleatorio = new Random();
                 List<int> listaNum = new List<int>();
+                Console.WriteLine("Lista dos número sorteado:");
                 for(int d = 0; d < i+1; d++)
                 {
                     listaNum.Add(aleatorio.Next(0, 9));
@@ -27,9 +29,12 @@ namespace c_sharp
                 }
                 Console.WriteLine(" ");
                 Console.ResetColor();
+                Thread.Sleep(1000);
+                Console.Clear();
+                cabecalho("Tentando Sua Memoria");
                 foreach (var item in listaNum)
                 {
-                    Console.Write($"Digite {c+1}º número: ");
+                    Console.Write($"Qual foi o {c+1}º número? ");
                     num = int.Parse(Console.ReadLine());
                     if(num == listaNum[c])
                     {
@@ -54,6 +59,7 @@ namespace c_sharp
                 }
                 total++;
                 i++;
+                Console.Clear();
             }
             if(total == 0)
             {
@@ -64,18 +70,36 @@ namespace c_sharp
                 Console.WriteLine($"Ganhaste apenas {total} partida!!!");
                 if(contS == 1)
                 {
-                    Console.WriteLine($"Acertaste {contS} vez!!!");
+                    Console.WriteLine($"Acertaste {contS} número!!!");
                 }
                 else
                 {
-                    Console.WriteLine($"Acertaste {contS} vezes!!!");
+                    Console.WriteLine($"Acertaste {contS} números!!!");
                 }
             }
             else
             {
                 Console.WriteLine($"Ganhaste {total} partidas!!!");
-                Console.WriteLine($"Acertaste {contS} vezes");
+                Console.WriteLine($"Acertaste {contS} números");
             }
+        }
+        static void linha()
+        {
+            Console.WriteLine("------------------------------");
+        }
+        static void cabecalho(string msg)
+        {
+            linha();
+            center(msg, 30);
+            linha();
+        }
+        static void center(string teste, int num){
+            int total, esquerda, direita;
+            string test = "";
+            total = num - teste.Length;
+            direita = (total / 2) + teste.Length;
+            esquerda = num - direita;
+            Console.WriteLine("{0}{1}", teste.PadLeft(direita, ' '), test.PadRight(esquerda-1, ' '));
         }
     }
 }
